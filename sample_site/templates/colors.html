@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Things of a Color!</title>
+  <meta name="description" content="Gives examples of items of a certain color">
+  <meta name="author" content="Liz Berg">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+    submit = function(){
+	  color = $("#color").val()
+
+    color = {"color": color}
+
+	  $.post({
+	    url: "/solve",
+		contentType: "application/json",
+		data: JSON.stringify(color),
+    success: function(result){
+  	   $("#response").html("A thing of this color is " + result.thing);
+  		}
+	  });
+	}
+  </script>
+</head>
+
+<body style="background-color:powderblue;">
+
+    <h1>Things of a Color</h1>
+    <h4>Everyone has a color that they prefer more than other colors.<br />
+      Sometimes it is nice to know what the things are that have that color that you love so much!<br />
+      Enter your favorite color from the list below to get inspired by a thing of that color. </h4>
+    <p style="color:red;">red</p>
+    <p style="color:green;">green</p>
+    <p style="color:blue;">blue</p>
+    <p style="color:yellow;">yellow</p>
+
+    <h3>Enter your favorite color from the list above.</h3>
+    <input type="text" placeholder="here we go" id="color">
+
+
+    <button onclick="submit();">Get Colored Thing!</button>
+
+    <p id="response"></p>
+</body>
+</html>
